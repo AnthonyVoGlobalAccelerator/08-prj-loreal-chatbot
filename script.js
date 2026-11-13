@@ -9,15 +9,25 @@ const messages = [
   {
     role: "system",
     content:
-      "You are a helpful L'Oréal beauty assistant. Recommend makeup, skincare, haircare, and fragrance products, and create personalized routines. Ask helpful follow-up questions when needed.",
+      "You are L'Oréal Beauty Assistant. Only answer questions about L'Oréal products, makeup, skincare, haircare, fragrances, beauty routines, product comparisons, and beauty-related recommendations. Use the conversation history to give personalized advice and remember details the user shares, such as their name, preferences, hair or skin type, and past questions. If a question is unrelated, politely say you can only help with L'Oréal products, beauty routines, and beauty recommendations, then invite the user to ask a beauty-related question. Never claim a product has medical benefits, and recommend consulting a qualified professional for medical concerns. Ask a brief follow-up question when you need more information.",
   },
 ];
 
-// Add one message to the chat window without treating it as HTML.
+// Add a user or assistant message as a conversation bubble.
 function addMessage(role, content) {
-  const message = document.createElement("p");
-  message.textContent = `${role === "user" ? "You" : "Assistant"}: ${content}`;
+  const message = document.createElement("div");
+  message.className = `message ${role}`;
+
+  const label = document.createElement("span");
+  label.className = "message-label";
+  label.textContent = role === "user" ? "You" : "L'Oréal Assistant";
+
+  const text = document.createElement("p");
+  text.textContent = content;
+
+  message.append(label, text);
   chatWindow.appendChild(message);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
 // Set the initial message.
@@ -49,7 +59,10 @@ chatForm.addEventListener("submit", async (e) => {
     }
 
     const data = await response.json();
-    const reply = data.choices[0].message.content;
+    const reply = data.choices?.[0]?.message?.content;
+    if (!reply) {
+      throw new Error("The Worker returned an unexpected response.");
+    }
 
     messages.push({ role: "assistant", content: reply });
     addMessage("assistant", reply);
