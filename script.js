@@ -4,7 +4,7 @@ const userInput = document.getElementById("userInput");
 const chatWindow = document.getElementById("chatWindow");
 
 // Use the class-hosted proxy so the OpenAI API key stays private.
-const workerUrl = "https://loreal-chatbot.your-subdomain.workers.dev/";
+const workerUrl = "https://openaiapi.anthonyvo567.workers.dev/";
 const messages = [
   {
     role: "system",

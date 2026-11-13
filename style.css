@@ -9,6 +9,7 @@
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   color: #333;
+  background: #f7f5f2;
   display: flex;
   justify-content: center;
 }
@@ -21,29 +22,56 @@ body {
 /* header */
 .site-header {
   text-align: center;
-  padding-top: 50px;
+  padding-top: 42px;
+}
+
+.brand-logo {
+  width: min(280px, 70vw);
+  height: auto;
+  display: block;
+  margin: 0 auto 22px;
+}
+
+.brand-label {
+  color: #a00000;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
 }
 
 .site-title {
-  font-size: 22px;
+  color: #111;
+  font-size: 30px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.brand-subtitle,
+.site-subtitle {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #666;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 /* chat window */
 .chatbox {
-  margin: 40px 0;
+  margin: 36px 0;
 }
 
 .chat-window {
   height: 360px;
-  border: 1px solid #000;
+  border: 1px solid #d5d0ca;
+  border-top: 4px solid #111;
   padding: 20px;
   font-size: 18px;
   line-height: 1.5;
   overflow-y: auto;
-  background: #fafafa;
+  background: #fff;
   white-space: pre-line;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 6%);
 }
 
 /* messages */
@@ -70,8 +98,9 @@ body {
 .chat-form input {
   flex: 1;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #d5d0ca;
   font-size: 18px;
+  background: #fff;
 }
 
 .chat-form input:focus {
